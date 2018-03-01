@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestAll">
+
+	<!-- <test name="services">
+		<packages>
+			<package name="com.inventory.management.services.*" />
+		</packages>
+	</test> -->
+
+	<test name="rest">
+		<packages>
+			<package name="com.inventory.management.rest.*" />
+		</packages>
+	</test>
+</suite>
