@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.inventory.management.model.Office;
 import com.inventory.management.model.reference.Country;
 
-public class OfficeControllerIT extends BaseTestCaseIT{
+public class OfficeControllerITTest extends BaseTestCaseIT{
 	
 	private String baseUrl = "/office";
 	

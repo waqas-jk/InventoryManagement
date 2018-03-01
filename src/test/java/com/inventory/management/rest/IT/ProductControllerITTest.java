@@ -10,7 +10,7 @@ import com.inventory.management.model.Brand;
 import com.inventory.management.model.Product;
 import com.inventory.management.model.reference.ProductType;
 
-public class ProductControllerIT extends BaseTestCaseIT{
+public class ProductControllerITTest extends BaseTestCaseIT{
 	
 	private String baseUrl = "/product";
 	

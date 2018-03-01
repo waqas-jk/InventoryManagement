@@ -9,7 +9,7 @@ import com.inventory.management.model.Product;
 import com.inventory.management.model.Warehouse;
 import com.inventory.management.model.reference.ProductSize;
 
-public class InventoryControllerIT extends BaseTestCaseIT{
+public class InventoryControllerITTest extends BaseTestCaseIT{
 	
 	private String baseUrl = "/inventory";
 	

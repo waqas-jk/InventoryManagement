@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.inventory.management.model.Product;
 import com.inventory.management.model.reference.ProductSize;
 
-public class SizeControllerIT extends BaseTestCaseIT{
+public class SizeControllerITTest extends BaseTestCaseIT{
 	
 	private String baseUrl = "/size";
 	
