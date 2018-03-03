@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -59,8 +60,9 @@ public class Warehouse extends BaseEntityNameAware {
 
 	@Override
 	public String toString() {
-		return "Warehouse [city=" + city + ", office=" + office + ", isDeleted=" + isDeleted + ", name=" + name
-				+ ", id=" + id + "]";
+		ToStringBuilder builder = new ToStringBuilder(this);
+		builder.appendSuper(super.toString()).append("office", office).append("isDeleted", isDeleted).append("city", city);
+		return builder.toString();
 	}
 
 }

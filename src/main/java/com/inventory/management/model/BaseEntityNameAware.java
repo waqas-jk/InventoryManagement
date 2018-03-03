@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -32,7 +33,9 @@ public class BaseEntityNameAware extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return getClass().getName() + " [name=" + name + ", id=" + id + "]";
+		ToStringBuilder builder = new ToStringBuilder(this);
+		builder.appendSuper(super.toString()).append("name", name);
+		return builder.toString();
 	}
-
+	
 }

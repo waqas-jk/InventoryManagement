@@ -1,5 +1,7 @@
 package com.inventory.management.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.inventory.management.Constants;
 import com.inventory.management.model.reference.ProductSize;
@@ -96,10 +98,12 @@ public class InventoryRestDto {
 
 	@Override
 	public String toString() {
-		return "InventoryRestDto [warehouse=" + warehouse + ", product=" + product + ", productSize=" + productSize
-				+ ", qpb=" + qpb + ", moq=" + moq + ", reorderPoint=" + reorderPoint + ", inStockQuantity="
-				+ inStockQuantity + ", inTransitQuantity=" + inTransitQuantity + ", availableQuantity="
-				+ availableQuantity + "]";
+		ToStringBuilder builder = new ToStringBuilder(this);
+		builder.append("warehouse", warehouse).append("product", product).append("productSize", productSize)
+				.append("qpb", qpb).append("moq", moq).append("reorderPoint", reorderPoint)
+				.append("inStockQuantity", inStockQuantity).append("inTransitQuantity", inTransitQuantity)
+				.append("availableQuantity", availableQuantity);
+		return builder.toString();
 	}
 
 }

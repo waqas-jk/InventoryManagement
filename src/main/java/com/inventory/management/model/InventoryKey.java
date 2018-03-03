@@ -7,6 +7,10 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.inventory.management.model.reference.ProductSize;
 
 /**
@@ -53,47 +57,36 @@ public class InventoryKey implements Serializable {
 	public void setWarehouse(Warehouse warehouse) {
 		this.warehouse = warehouse;
 	}
-
+	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((product == null) ? 0 : product.hashCode());
-		result = prime * result + ((productSize == null) ? 0 : productSize.hashCode());
-		result = prime * result + ((warehouse == null) ? 0 : warehouse.hashCode());
-		return result;
+		return new HashCodeBuilder(17, 37).append(product).append(productSize).append(warehouse).toHashCode();
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
 			return true;
-		if (obj == null)
+		}
+		if (obj.getClass() != getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		InventoryKey other = (InventoryKey) obj;
-		if (product == null) {
-			if (other.product != null)
-				return false;
-		} else if (!product.equals(other.product))
-			return false;
-		if (productSize == null) {
-			if (other.productSize != null)
-				return false;
-		} else if (!productSize.equals(other.productSize))
-			return false;
-		if (warehouse == null) {
-			if (other.warehouse != null)
-				return false;
-		} else if (!warehouse.equals(other.warehouse))
-			return false;
-		return true;
+		}
+		InventoryKey rhs = (InventoryKey) obj;
+		return new EqualsBuilder().appendSuper(super.equals(obj)).append(this.product, rhs.product)
+				.append(this.productSize, rhs.productSize).append(this.warehouse, rhs.warehouse)
+				.isEquals();
 	}
+
 
 	@Override
 	public String toString() {
-		return "InventoryKey [warehouse=" + warehouse + ", product=" + product + ", productSize=" + productSize + "]";
+		ToStringBuilder builder = new ToStringBuilder(this);
+		builder.append("warehouse", warehouse).append("product", product).append("productSize", productSize);
+		return builder.toString();
 	}
 
+	
 }

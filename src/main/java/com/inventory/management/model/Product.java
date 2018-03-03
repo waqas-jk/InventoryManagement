@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Type;
 
 import com.inventory.management.model.reference.ProductType;
@@ -66,8 +67,10 @@ public class Product extends BaseEntityNameAware {
 
 	@Override
 	public String toString() {
-		return "Product [description=" + description + ", name=" + getName() + ", brand=" + brand + ", productType="
-				+ productType + ", isDeleted=" + isDeleted + ", id=" + id + "]";
+		ToStringBuilder builder = new ToStringBuilder(this);
+		builder.appendSuper(super.toString()).append("description", description).append("brand", brand).append("productType", productType)
+				.append("isDeleted", isDeleted);
+		return builder.toString();
 	}
 
 }

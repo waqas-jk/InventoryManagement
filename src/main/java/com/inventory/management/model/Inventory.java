@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.inventory.management.Constants;
 
 /**
@@ -92,39 +96,33 @@ public class Inventory {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((key == null) ? 0 : key.hashCode());
-		return result;
+		return new HashCodeBuilder(17, 37).append(key).toHashCode();
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Inventory)) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
 			return false;
 		}
-		Inventory other = (Inventory) obj;
-		if (key == null) {
-			if (other.key != null) {
-				return false;
-			}
-		} else if (!key.equals(other.key)) {
-			return false;
-		}
-		return true;
+		Inventory rhs = (Inventory) obj;
+		return new EqualsBuilder().appendSuper(super.equals(obj)).append(this.key, rhs.key).isEquals();
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Inventory [key=" + key + ", qpb=" + qpb + ", moq=" + moq + ", reorderPoint=" + reorderPoint
-				+ ", inStockQuantity=" + inStockQuantity + ", inTransitQuantity=" + inTransitQuantity
-				+ ", availableQuantity=" + availableQuantity + "]";
+		ToStringBuilder builder = new ToStringBuilder(this);
+		builder.append("key", key).append("qpb", qpb).append("moq", moq).append("reorderPoint", reorderPoint)
+				.append("inStockQuantity", inStockQuantity).append("inTransitQuantity", inTransitQuantity)
+				.append("availableQuantity", availableQuantity);
+		return builder.toString();
 	}
 
+	
 }

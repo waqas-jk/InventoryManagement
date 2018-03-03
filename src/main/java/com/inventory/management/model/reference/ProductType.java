@@ -3,6 +3,7 @@ package com.inventory.management.model.reference;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Type;
 
 import com.inventory.management.model.BaseEntityNameAware;
@@ -32,7 +33,9 @@ public class ProductType extends BaseEntityNameAware {
 
 	@Override
 	public String toString() {
-		return "ProductType [isInternal=" + isInternal + ", name=" + name + ", id=" + id + "]";
+		ToStringBuilder builder = new ToStringBuilder(this);
+		builder.appendSuper(super.toString()).append("isInternal", isInternal);
+		return builder.toString();
 	}
 
 }
